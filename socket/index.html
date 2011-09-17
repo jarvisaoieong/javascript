@@ -1,0 +1,33 @@
+<html>
+    <body>
+        <h1></h1>
+        <span></span>
+        <ul id="content"></ul>
+        <form action="" method="post">
+        <input type="input" name="data" value="" />
+        <input type="submit" value="enter" name="" />
+        </form>
+        <script src="/socket.io/socket.io.js" type="text/javascript"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            var socket = io.connect('http://localhost');
+            socket.on('welcome', function(data){
+                $('h1').html(data);
+                console.log(data);
+            });
+            socket.on('login', function(data){
+                $('#content').append("<li>" + data + " logined in.</li>");
+                console.log(data);
+            });
+            $('form').submit(function(){
+                $('#content').append("<li>me: "+$('input[name=data]').val()+"</li>");
+                socket.emit('message', $('input[name=data]').val());
+                return false;
+            });
+            socket.on('data', function(data){
+                $('#content').append("<li>"+data.ip+": "+data.data+"</li>");
+                console.log(data);
+            });
+        </script>
+    </body>
+</html>
