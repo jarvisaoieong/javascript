@@ -11,6 +11,7 @@ io.sockets.on 'connection', (socket)->
     socket.emit 'welcome', 'welcome to ERS socket.io chat room'
     socket.on 'message', (data)->
         console.log data
-        socket.broadcast.emit 'data', 
+        socket.broadcast.emit 'data',
             data: data
             ip: socket.handshake.address.address
+
