@@ -11074,14 +11074,14 @@ window.jQuery = window.$ = jQuery;
   AlbumView = require('views/album_view').AlbumView;
   Albums = require('collections/albums').Albums;
   LibraryView = require('views/library_view').LibraryView;
-  window.Album = Album;
-  window.AlbumView = AlbumView;
-  window.Albums = Albums;
-  window.LibraryView = LibraryView;
   $(document).ready(function() {
     app.initialize = function() {
       app.routers.main = new MainRouter();
       app.views.home = new HomeView();
+      app.collections.library = new Albums();
+      app.views.libraryView = new LibraryView({
+        collection: app.collections.library
+      });
       if (Backbone.history.getFragment() === '') {
         return app.routers.main.navigate('home', true);
       }
@@ -11135,10 +11135,20 @@ window.jQuery = window.$ = jQuery;
       MainRouter.__super__.constructor.apply(this, arguments);
     }
     MainRouter.prototype.routes = {
-      "home": "home"
+      "home": "home",
+      'blank': 'blank'
     };
     MainRouter.prototype.home = function() {
-      return $('body').html(app.views.home.render().el);
+      var $container;
+      $('body').html(app.views.home.render().el);
+      $container = $('#container');
+      $container.empty();
+      $container.append(app.views.libraryView.render().el);
+      return app.collections.library.fetch();
+    };
+    MainRouter.prototype.blank = function() {
+      $('body').empty();
+      return $('body').text('blank');
     };
     return MainRouter;
   })();
