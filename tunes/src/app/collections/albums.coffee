@@ -1,5 +1,5 @@
 {Album} = require 'models/album'
 
-class Albums extends Backbone.Collection
+class exports.Albums extends Backbone.Collection
   model: Album
-  url: '/albums'
+  url: '/javascript/tunes/albums.json'

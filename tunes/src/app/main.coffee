@@ -8,9 +8,13 @@ MainRouter = require('routers/main_router').MainRouter
 HomeView = require('views/home_view').HomeView
 {Album} = require 'models/album'
 {AlbumView} = require 'views/album_view'
+{Albums} = require 'collections/albums'
+{LibraryView} = require 'views/library_view'
 
 window.Album = Album
 window.AlbumView = AlbumView
+window.Albums = Albums
+window.LibraryView = LibraryView
 
 # app bootstrapping on document ready
 $(document).ready ->

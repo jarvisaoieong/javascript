@@ -11041,7 +11041,7 @@ window.jQuery = window.$ = jQuery;
   }
   return this.require.define;
 }).call(this)({"collections/albums": function(exports, require, module) {(function() {
-  var Album, Albums;
+  var Album;
   var __hasProp = Object.prototype.hasOwnProperty, __extends = function(child, parent) {
     for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; }
     function ctor() { this.constructor = child; }
@@ -11051,18 +11051,18 @@ window.jQuery = window.$ = jQuery;
     return child;
   };
   Album = require('models/album').Album;
-  Albums = (function() {
+  exports.Albums = (function() {
     __extends(Albums, Backbone.Collection);
     function Albums() {
       Albums.__super__.constructor.apply(this, arguments);
     }
     Albums.prototype.model = Album;
-    Albums.prototype.url = '/albums';
+    Albums.prototype.url = '/javascript/tunes/albums.json';
     return Albums;
   })();
 }).call(this);
 }, "main": function(exports, require, module) {(function() {
-  var Album, AlbumView, HomeView, MainRouter;
+  var Album, AlbumView, Albums, HomeView, LibraryView, MainRouter;
   window.app = {};
   app.routers = {};
   app.models = {};
@@ -11072,8 +11072,12 @@ window.jQuery = window.$ = jQuery;
   HomeView = require('views/home_view').HomeView;
   Album = require('models/album').Album;
   AlbumView = require('views/album_view').AlbumView;
+  Albums = require('collections/albums').Albums;
+  LibraryView = require('views/library_view').LibraryView;
   window.Album = Album;
   window.AlbumView = AlbumView;
+  window.Albums = Albums;
+  window.LibraryView = LibraryView;
   $(document).ready(function() {
     app.initialize = function() {
       app.routers.main = new MainRouter();
@@ -11242,6 +11246,51 @@ window.jQuery = window.$ = jQuery;
   }).call(__obj);
   __obj.safe = __objSafe, __obj.escape = __escape;
   return __out.join('');
+}}, "templates/library": function(exports, require, module) {module.exports = function(__obj) {
+  if (!__obj) __obj = {};
+  var __out = [], __capture = function(callback) {
+    var out = __out, result;
+    __out = [];
+    callback.call(this);
+    result = __out.join('');
+    __out = out;
+    return __safe(result);
+  }, __sanitize = function(value) {
+    if (value && value.ecoSafe) {
+      return value;
+    } else if (typeof value !== 'undefined' && value != null) {
+      return __escape(value);
+    } else {
+      return '';
+    }
+  }, __safe, __objSafe = __obj.safe, __escape = __obj.escape;
+  __safe = __obj.safe = function(value) {
+    if (value && value.ecoSafe) {
+      return value;
+    } else {
+      if (!(typeof value !== 'undefined' && value != null)) value = '';
+      var result = new String(value);
+      result.ecoSafe = true;
+      return result;
+    }
+  };
+  if (!__escape) {
+    __escape = __obj.escape = function(value) {
+      return ('' + value)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    };
+  }
+  (function() {
+    (function() {
+      __out.push('<h1>Music Library</h1>\n<ul class="albums"></ul>\n');
+    }).call(this);
+    
+  }).call(__obj);
+  __obj.safe = __objSafe, __obj.escape = __escape;
+  return __out.join('');
 }}, "views/album_view": function(exports, require, module) {(function() {
   var albumTemplate;
   var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; }, __hasProp = Object.prototype.hasOwnProperty, __extends = function(child, parent) {
@@ -11293,6 +11342,66 @@ window.jQuery = window.$ = jQuery;
       return this;
     };
     return HomeView;
+  })();
+}).call(this);
+}, "views/library_album_view": function(exports, require, module) {(function() {
+  var AlbumView;
+  var __hasProp = Object.prototype.hasOwnProperty, __extends = function(child, parent) {
+    for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; }
+    function ctor() { this.constructor = child; }
+    ctor.prototype = parent.prototype;
+    child.prototype = new ctor;
+    child.__super__ = parent.prototype;
+    return child;
+  };
+  AlbumView = require('views/album_view').AlbumView;
+  exports.LibraryAlbumView = (function() {
+    __extends(LibraryAlbumView, AlbumView);
+    function LibraryAlbumView() {
+      LibraryAlbumView.__super__.constructor.apply(this, arguments);
+    }
+    return LibraryAlbumView;
+  })();
+}).call(this);
+}, "views/library_view": function(exports, require, module) {(function() {
+  var LibraryAlbumView, libraryTemplate;
+  var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; }, __hasProp = Object.prototype.hasOwnProperty, __extends = function(child, parent) {
+    for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; }
+    function ctor() { this.constructor = child; }
+    ctor.prototype = parent.prototype;
+    child.prototype = new ctor;
+    child.__super__ = parent.prototype;
+    return child;
+  };
+  libraryTemplate = require('templates/library');
+  LibraryAlbumView = require('views/library_album_view').LibraryAlbumView;
+  exports.LibraryView = (function() {
+    __extends(LibraryView, Backbone.View);
+    function LibraryView() {
+      this.render = __bind(this.render, this);
+      LibraryView.__super__.constructor.apply(this, arguments);
+    }
+    LibraryView.prototype.tagName = 'section';
+    LibraryView.prototype.className = 'library';
+    LibraryView.prototype.initialize = function() {
+      return this.collection.bind('reset', this.render);
+    };
+    LibraryView.prototype.render = function() {
+      var $albums, collection;
+      this.$(this.el).html(libraryTemplate({}));
+      collection = this.collection;
+      $albums = this.$('.albums');
+      collection.each(function(album) {
+        var view;
+        view = new LibraryAlbumView({
+          model: album,
+          collection: collection
+        });
+        return $albums.append(view.render().el);
+      });
+      return this;
+    };
+    return LibraryView;
   })();
 }).call(this);
 }});
