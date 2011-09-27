@@ -11370,6 +11370,13 @@ window.jQuery = window.$ = jQuery;
     function LibraryAlbumView() {
       LibraryAlbumView.__super__.constructor.apply(this, arguments);
     }
+    LibraryAlbumView.prototype.events = {
+      'click .queue.add': 'select'
+    };
+    LibraryAlbumView.prototype.select = function() {
+      this.collection.trigger('select', this.model);
+      return console.log('Triggered select', this.model);
+    };
     return LibraryAlbumView;
   })();
 }).call(this);
