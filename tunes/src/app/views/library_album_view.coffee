@@ -5,4 +5,3 @@ class exports.LibraryAlbumView extends AlbumView
     'click .queue.add': 'select'
   select: ->
     @collection.trigger 'select', @model
-    console.log 'Triggered select', @model

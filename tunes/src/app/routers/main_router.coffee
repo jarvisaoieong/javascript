@@ -7,6 +7,7 @@ class exports.MainRouter extends Backbone.Router
     $('body').html app.views.home.render().el
     $container = $ '#container'
     $container.empty()
+    $container.append app.views.playlistView.render().el
     $container.append app.views.libraryView.render().el
     app.collections.library.fetch()
   blank: ->
