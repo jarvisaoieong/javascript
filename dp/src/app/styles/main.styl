@@ -1,0 +1,122 @@
+@import "reset"
+@import "init"
+
+body
+  background-image url('../../../img/bg.jpg')
+  color font-color
+
+header
+  width 100%
+  border-bottom solid border-color
+  margin-top 24px
+  padding-bottom 20px
+  overflow hidden
+
+  #header-main
+    width 960px
+    margin 0px auto
+
+    img
+      float left
+
+  #header-info
+    float right
+
+    a
+      font-size 16px
+      color font-color
+
+    p
+      text-align right
+      line-height 22px
+
+nav
+  width 960px
+  margin 0px auto
+  overflow hidden
+
+  ul
+    float right
+    margin-right 10px
+
+    li
+      float left
+      list-style none
+
+      a
+        padding 12px 10px
+        font-size 18px
+        color font-color
+
+        &:hover
+          background-color border-color
+          color white
+
+#content
+  width 960px
+  height 790px
+  margin 0px auto
+  position relative
+
+  #parliament
+    position absolute
+    top 375px
+    left 0px
+
+  #projector
+    position absolute
+    top 35px
+    right 10px
+    height 335px
+    width 435px
+    background-image url('../../../img/projector_close.png')
+    background-repeat no-repeat
+
+    #projector-content
+      height 270px
+      width 372px
+      position absolute
+      top 34px
+      left 28px
+
+      ul
+        text-align center
+        font-size 25px
+        margin-top 50px
+
+  #video-list
+    position relative
+
+    .video
+      cursor pointer
+      position absolute
+      &:nth-child(1)
+        top 20px
+        left 130px
+      &:nth-child(2)
+        top -120px
+        left 300px
+      &:nth-child(3)
+        top 70px
+        left 405px
+      &:nth-child(4)
+        top 50px
+        left 750px
+
+footer
+  border-top solid footer-border-color
+  width 960px
+  margin 0px auto
+
+  #footer-main
+    width 500px
+    margin 11px auto
+    text-align center
+    font-size 14px
+
+    img
+      float left
+      margin 0px 5px
+
+    p.font-special-color
+      color font-special-color
