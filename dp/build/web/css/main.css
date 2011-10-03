@@ -25,9 +25,9 @@ nav ul li a{padding:12px 10px;font-size:18px;color:#714644;}
 nav ul li a:hover{background-color:#087a91;color:#fff}
 #content{width:960px;height:790px;margin:0 auto;position:relative;}
 #content #parliament{position:absolute;top:375px;left:0}
-#content #projector{position:absolute;top:35px;right:10px;height:335px;width:435px;background-image:url("../../../img/projector_close.png");background-repeat:no-repeat;}
-#content #projector #projector-content{height:270px;width:372px;position:absolute;top:34px;left:28px;}
-#content #projector #projector-content ul{text-align:center;font-size:25px;margin-top:50px}
+#content #projector{position:absolute;top:35px;right:10px;height:335px;width:435px;}
+#content #projector #projector-content{display:none;width:372px;height:270px;left:28px;top:-8px;position:relative;border:solid 3px #000}
+#content #projector #projector-bottom{position:relative;top:-8px}
 #content #video-list{position:relative;}
 #content #video-list .video{cursor:pointer;position:absolute;}
 #content #video-list .video:nth-child(1){top:20px;left:130px}

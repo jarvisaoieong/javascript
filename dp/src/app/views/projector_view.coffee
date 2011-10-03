@@ -7,7 +7,12 @@ class exports.ProjectorView extends Backbone.View
   initialize: ->
     @model.bind 'change', @showVideo
   render: =>
-    @$(@el).html projectorTemplate {}
+    $el = @$(@el)
+    $el.html projectorTemplate {}
+    $projector_content = @$('#projector-content')
+    _.delay ->
+      $projector_content.slideDown 1000
+    , 500
     @
   showVideo: (model) =>
     $iframe = $('<iframe/>')
@@ -17,6 +22,3 @@ class exports.ProjectorView extends Backbone.View
     $iframe.hide()
     @$('#projector-content').html $iframe
     $iframe.slideDown 1000
-  showProjector: =>
-    #    @$(@el).css 'backgroundImage', '/img/projector.png'
-    console.dir @$(@el)

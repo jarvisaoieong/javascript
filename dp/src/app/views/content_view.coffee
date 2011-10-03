@@ -13,5 +13,4 @@ class exports.ContentView extends Backbone.View
     @$(@el).html contentTemplate {}
     @$(@el).append @projectorView.render().el
     @$(@el).append @videoListView.render().el
-    @projectorView.showProjector()
     @

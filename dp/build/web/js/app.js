@@ -11195,7 +11195,6 @@ window.jQuery = window.$ = jQuery;
     };
     MainRouter.prototype.home = function() {
       $('body').html(app.views.home.render().el);
-      $('nav').html(app.views.menuListView.render().el);
       return $('#content').html(app.views.contentView.render().el);
     };
     return MainRouter;
@@ -11285,7 +11284,7 @@ window.jQuery = window.$ = jQuery;
   }
   (function() {
     (function() {
-      __out.push('<header>\n    <div id=\'header-main\'>\n        <img src="img/logo.png" />\n        <div id=\'header-info\'>\n            <p>\n                <a href="cn">中文</a>|\n                <a href="en">EN</a>\n            </p>\n            <br />\n            <p style=\'font-size: 20px\'>04.12.2011</p>\n            <p style=\'font-size: 14px\'>修改 <<出版法>> 和 <<視聽廣播法>></p>\n            <p style=\'font-size: 12px\'>The Amendement of the Press Law and the Visual-audio Broadcasting Act</p>\n        </div>\n    </div>\n</header>\n\n<nav></nav>\n\n<div id="content"></div>\n\n<footer>\n    <div id=\'footer-main\'>\n        <img src=\'img/ers.png\' />\n        <p>版權所有 © 2011 易研方案(澳門)有限公司</p>\n        <p>關於我們|聯絡我們|免責聲明|私隱政策</p>\n        <p class="font-special-color">澳門商議式民意調查由易研方案(澳門)有限公司執行</p>\n    </div>\n</footer>\n');
+      __out.push('<!--\n<header>\n    <div id=\'header-main\'>\n        <img src="img/logo.png" />\n        <div id=\'header-info\'>\n            <p>\n                <a href="cn">中文</a>|\n                <a href="en">EN</a>\n            </p>\n            <br />\n            <p style=\'font-size: 20px\'>04.12.2011</p>\n            <p style=\'font-size: 14px\'>修改 <<出版法>> 和 <<視聽廣播法>></p>\n            <p style=\'font-size: 12px\'>The Amendement of the Press Law and the Visual-audio Broadcasting Act</p>\n        </div>\n    </div>\n</header>\n\n<nav></nav>\n-->\n<div id="content"></div>\n\n<footer>\n    <div id=\'footer-main\'>\n        <img src=\'img/ers.png\' />\n        <p>版權所有 © 2011 易研方案(澳門)有限公司</p>\n        <p>關於我們|聯絡我們|免責聲明|私隱政策</p>\n        <p class="font-special-color">澳門商議式民意調查由易研方案(澳門)有限公司執行</p>\n    </div>\n</footer>\n');
     }).call(this);
     
   }).call(__obj);
@@ -11422,7 +11421,7 @@ window.jQuery = window.$ = jQuery;
   }
   (function() {
     (function() {
-      __out.push('<div id="projector-content">\n</div>\n');
+      __out.push('<img id=\'projector-top\' src="/javascript/dp/img/projector_top.png" />\n<div id="projector-content">\n</div>\n<img id=\'projector-bottom\' src="/javascript/dp/img/projector_bottom.png" />\n');
     }).call(this);
     
   }).call(__obj);
@@ -11561,7 +11560,6 @@ window.jQuery = window.$ = jQuery;
       this.$(this.el).html(contentTemplate({}));
       this.$(this.el).append(this.projectorView.render().el);
       this.$(this.el).append(this.videoListView.render().el);
-      this.projectorView.showProjector();
       return this;
     };
     return ContentView;
@@ -11672,7 +11670,6 @@ window.jQuery = window.$ = jQuery;
   exports.ProjectorView = (function() {
     __extends(ProjectorView, Backbone.View);
     function ProjectorView() {
-      this.showProjector = __bind(this.showProjector, this);
       this.showVideo = __bind(this.showVideo, this);
       this.render = __bind(this.render, this);
       ProjectorView.__super__.constructor.apply(this, arguments);
@@ -11682,7 +11679,13 @@ window.jQuery = window.$ = jQuery;
       return this.model.bind('change', this.showVideo);
     };
     ProjectorView.prototype.render = function() {
-      this.$(this.el).html(projectorTemplate({}));
+      var $el, $projector_content;
+      $el = this.$(this.el);
+      $el.html(projectorTemplate({}));
+      $projector_content = this.$('#projector-content');
+      _.delay(function() {
+        return $projector_content.slideDown(1000);
+      }, 500);
       return this;
     };
     ProjectorView.prototype.showVideo = function(model) {
@@ -11694,9 +11697,6 @@ window.jQuery = window.$ = jQuery;
       $iframe.hide();
       this.$('#projector-content').html($iframe);
       return $iframe.slideDown(1000);
-    };
-    ProjectorView.prototype.showProjector = function() {
-      return console.dir(this.$(this.el));
     };
     return ProjectorView;
   })();
