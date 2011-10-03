@@ -1,2 +1,2 @@
-<img src="img/athen.png" id="athen" />
-<img src="img/parliament.png" id="parliament" />
+<img src="<%= app.config.imgPath %>/athen.png" id="athen" />
+<img src="<%= app.config.imgPath %>/parliament.png" id="parliament" />

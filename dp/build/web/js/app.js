@@ -11057,7 +11057,7 @@ window.jQuery = window.$ = jQuery;
       MenuList.__super__.constructor.apply(this, arguments);
     }
     MenuList.prototype.model = Menu;
-    MenuList.prototype.url = 'menu_list.json';
+    MenuList.prototype.url = "" + app.config.jsonPath + "/menu_list.json";
     return MenuList;
   })();
 }).call(this);
@@ -11078,7 +11078,7 @@ window.jQuery = window.$ = jQuery;
       VideoList.__super__.constructor.apply(this, arguments);
     }
     VideoList.prototype.model = Video;
-    VideoList.prototype.url = 'video_list.json';
+    VideoList.prototype.url = "" + app.config.jsonPath + "/video_list.json";
     return VideoList;
   })();
 }).call(this);
@@ -11089,6 +11089,9 @@ window.jQuery = window.$ = jQuery;
   app.models = {};
   app.collections = {};
   app.views = {};
+  app.config = {};
+  app.config.imgPath = 'http://vm:88/javascript/dp/img';
+  app.config.jsonPath = 'http://vm:88/javascript/dp/json';
   MainRouter = require('routers/main_router').MainRouter;
   HomeView = require('views/home_view').HomeView;
   Projector = require('models/projector').Projector;
@@ -11195,6 +11198,7 @@ window.jQuery = window.$ = jQuery;
     };
     MainRouter.prototype.home = function() {
       $('body').html(app.views.home.render().el);
+      $('nav').html(app.views.menuListView.render().el);
       return $('#content').html(app.views.contentView.render().el);
     };
     return MainRouter;
@@ -11239,7 +11243,11 @@ window.jQuery = window.$ = jQuery;
   }
   (function() {
     (function() {
-      __out.push('<img src="img/athen.png" id="athen" />\n<img src="img/parliament.png" id="parliament" />\n');
+      __out.push('<img src="');
+      __out.push(__sanitize(app.config.imgPath));
+      __out.push('/athen.png" id="athen" />\n<img src="');
+      __out.push(__sanitize(app.config.imgPath));
+      __out.push('/parliament.png" id="parliament" />\n');
     }).call(this);
     
   }).call(__obj);
@@ -11284,7 +11292,11 @@ window.jQuery = window.$ = jQuery;
   }
   (function() {
     (function() {
-      __out.push('<!--\n<header>\n    <div id=\'header-main\'>\n        <img src="img/logo.png" />\n        <div id=\'header-info\'>\n            <p>\n                <a href="cn">中文</a>|\n                <a href="en">EN</a>\n            </p>\n            <br />\n            <p style=\'font-size: 20px\'>04.12.2011</p>\n            <p style=\'font-size: 14px\'>修改 <<出版法>> 和 <<視聽廣播法>></p>\n            <p style=\'font-size: 12px\'>The Amendement of the Press Law and the Visual-audio Broadcasting Act</p>\n        </div>\n    </div>\n</header>\n\n<nav></nav>\n-->\n<div id="content"></div>\n\n<footer>\n    <div id=\'footer-main\'>\n        <img src=\'img/ers.png\' />\n        <p>版權所有 © 2011 易研方案(澳門)有限公司</p>\n        <p>關於我們|聯絡我們|免責聲明|私隱政策</p>\n        <p class="font-special-color">澳門商議式民意調查由易研方案(澳門)有限公司執行</p>\n    </div>\n</footer>\n');
+      __out.push('<header>\n    <div id=\'header-main\'>\n        <img src="');
+      __out.push(__sanitize(app.config.imgPath));
+      __out.push('/logo.png" />\n        <div id=\'header-info\'>\n            <p>\n                <a href="cn">中文</a>|\n                <a href="en">EN</a>\n            </p>\n            <br />\n            <p style=\'font-size: 20px\'>04.12.2011</p>\n            <p style=\'font-size: 14px\'>修改 <<出版法>> 和 <<視聽廣播法>></p>\n            <p style=\'font-size: 12px\'>The Amendement of the Press Law and the Visual-audio Broadcasting Act</p>\n        </div>\n    </div>\n</header>\n\n<nav></nav>\n\n<div id="content"></div>\n\n<footer>\n    <div id=\'footer-main\'>\n        <img src=\'');
+      __out.push(__sanitize(app.config.imgPath));
+      __out.push('/ers.png\' />\n        <p>版權所有 © 2011 易研方案(澳門)有限公司</p>\n        <p>關於我們|聯絡我們|免責聲明|私隱政策</p>\n        <p class="font-special-color">澳門商議式民意調查由易研方案(澳門)有限公司執行</p>\n    </div>\n</footer>\n');
     }).call(this);
     
   }).call(__obj);
@@ -11376,7 +11388,9 @@ window.jQuery = window.$ = jQuery;
   }
   (function() {
     (function() {
-      __out.push('<li><a href="#"><img src=\'img/home.png\' /></a></li>\n');
+      __out.push('<li><a href="#"><img src=\'');
+      __out.push(__sanitize(app.config.imgPath));
+      __out.push('/home.png\' /></a></li>\n');
     }).call(this);
     
   }).call(__obj);
@@ -11421,7 +11435,11 @@ window.jQuery = window.$ = jQuery;
   }
   (function() {
     (function() {
-      __out.push('<img id=\'projector-top\' src="/javascript/dp/img/projector_top.png" />\n<div id="projector-content">\n</div>\n<img id=\'projector-bottom\' src="/javascript/dp/img/projector_bottom.png" />\n');
+      __out.push('<img id=\'projector-top\' src="');
+      __out.push(__sanitize(app.config.imgPath));
+      __out.push('/projector_top.png" />\n<div id="projector-content">\n</div>\n<img id=\'projector-bottom\' src="');
+      __out.push(__sanitize(app.config.imgPath));
+      __out.push('/projector_bottom.png" />\n');
     }).call(this);
     
   }).call(__obj);
@@ -11520,8 +11538,8 @@ window.jQuery = window.$ = jQuery;
   }
   (function() {
     (function() {
-      __out.push('<img src="/javascript/dp/');
-      __out.push(__sanitize(this.imgUrl));
+      __out.push('<img src="');
+      __out.push(__sanitize("" + app.config.imgPath + "/" + this.imgUrl));
       __out.push('" />\n');
     }).call(this);
     
@@ -11557,7 +11575,7 @@ window.jQuery = window.$ = jQuery;
       });
     };
     ContentView.prototype.render = function() {
-      this.$(this.el).html(contentTemplate({}));
+      this.$(this.el).html(contentTemplate());
       this.$(this.el).append(this.projectorView.render().el);
       this.$(this.el).append(this.videoListView.render().el);
       return this;
@@ -11583,6 +11601,7 @@ window.jQuery = window.$ = jQuery;
     }
     HomeView.prototype.id = 'home-view';
     HomeView.prototype.render = function() {
+      $('body').css('backgroundImage', "url(" + app.config.imgPath + "/bg.jpg)");
       $(this.el).html(homeTemplate());
       return this;
     };
@@ -11655,7 +11674,7 @@ window.jQuery = window.$ = jQuery;
   })();
 }).call(this);
 }, "views/projector_view": function(exports, require, module) {(function() {
-  var Projector, projectorMenuTemplate, projectorTemplate;
+  var Projector, projectorTemplate;
   var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; }, __hasProp = Object.prototype.hasOwnProperty, __extends = function(child, parent) {
     for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; }
     function ctor() { this.constructor = child; }
@@ -11665,7 +11684,6 @@ window.jQuery = window.$ = jQuery;
     return child;
   };
   projectorTemplate = require('templates/projector');
-  projectorMenuTemplate = require('templates/projector_menu');
   Projector = require('models/projector').Projector;
   exports.ProjectorView = (function() {
     __extends(ProjectorView, Backbone.View);
@@ -11681,7 +11699,7 @@ window.jQuery = window.$ = jQuery;
     ProjectorView.prototype.render = function() {
       var $el, $projector_content;
       $el = this.$(this.el);
-      $el.html(projectorTemplate({}));
+      $el.html(projectorTemplate());
       $projector_content = this.$('#projector-content');
       _.delay(function() {
         return $projector_content.slideDown(1000);

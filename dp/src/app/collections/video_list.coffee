@@ -2,5 +2,5 @@
 
 class exports.VideoList extends Backbone.Collection
   model: Video
-  url: 'video_list.json'
+  url: "#{app.config.jsonPath}/video_list.json"
 

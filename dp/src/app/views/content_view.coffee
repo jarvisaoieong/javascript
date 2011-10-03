@@ -10,7 +10,7 @@ class exports.ContentView extends Backbone.View
       collection: @options.videoList
       projector: @options.projector
   render: =>
-    @$(@el).html contentTemplate {}
+    @$(@el).html contentTemplate()
     @$(@el).append @projectorView.render().el
     @$(@el).append @videoListView.render().el
     @

@@ -1,1 +1,1 @@
-<img src="/javascript/dp/<%= @imgUrl %>" />
+<img src="<%= "#{app.config.imgPath}/#{@imgUrl}" %>" />

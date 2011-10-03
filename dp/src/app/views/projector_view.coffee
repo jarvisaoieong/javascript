@@ -1,5 +1,4 @@
 projectorTemplate = require 'templates/projector'
-projectorMenuTemplate = require 'templates/projector_menu'
 {Projector} = require 'models/projector'
 
 class exports.ProjectorView extends Backbone.View
@@ -8,7 +7,7 @@ class exports.ProjectorView extends Backbone.View
     @model.bind 'change', @showVideo
   render: =>
     $el = @$(@el)
-    $el.html projectorTemplate {}
+    $el.html projectorTemplate()
     $projector_content = @$('#projector-content')
     _.delay ->
       $projector_content.slideDown 1000
