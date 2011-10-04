@@ -5,8 +5,8 @@ app.collections = {}
 app.views = {}
 app.config = {}
 
-app.config.imgPath = 'http://vm:88/javascript/dp/img'
-app.config.jsonPath = 'http://vm:88/javascript/dp/json'
+app.config.imgPath = imgPath
+app.config.jsonPath = jsonPath
 
 MainRouter = require('routers/main_router').MainRouter
 HomeView = require('views/home_view').HomeView
@@ -29,18 +29,21 @@ $(document).ready ->
 
     app.collections.menuList = new MenuList()
     app.collections.videoList = new VideoList()
-    
+
+    ###
     app.views.home = new HomeView()
     app.views.menuListView = new MenuListView
       collection: app.collections.menuList
+    ###
     app.views.contentView = new ContentView
       projector: app.models.projector
       videoList: app.collections.videoList
     
-    app.collections.menuList.fetch()
+    #app.collections.menuList.fetch()
     app.collections.videoList.fetch()
 
-    app.routers.main.navigate 'home', true if Backbone.history.getFragment() is ''
+#    app.routers.main.navigate 'home', true if Backbone.history.getFragment() is ''
   app.initialize()
-#  $('#content').html app.views.contentView.render().el
+  $('body').css 'backgroundImage', "url(#{app.config.imgPath}/bg.jpg)"
+  $('#content').html app.views.contentView.render().el
   Backbone.history.start()

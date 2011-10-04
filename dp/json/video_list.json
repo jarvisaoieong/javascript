@@ -1,7 +1,8 @@
 [
     {"name":"甚麼是DP?",
      "imgUrl":"/yellow1.png",
-     "videoUrl":""},
+     "videoUrl":"",
+     "text":"<img src='http://dpmacao.org/zh-tw/themes/ers/font-page/img/dp.png' /><p><span>商議式民意調查 <br />( Deliberative Polling , DP )</span><hr />是一種公眾諮詢方法。透過讓公眾對特定議題的審慎思考、小組商議及大組專家答問的過程，並貫徹科學抽樣的方法，對被抽中的參與者在商議前後進行民調。它引入民主商議這一環節，參與者在獲得平衡全面的資訊的基礎上討論議題，從而形成經過深思熟慮的民意。</p>"},
     {"name":"DP原理及流程",
      "imgUrl":"/blue2.png",
      "videoUrl":""},
@@ -10,4 +11,4 @@
      "videoUrl":""},
     {"name":"DP MACAU宣傳片",
      "imgUrl":"/yellow2.png",
-     "videoUrl":"http://www.youtube.com/embed/5w5s0ZTpgYw"}]
+     "videoUrl":"http://www.youtube.com/embed/LHrU5K9X7Wk"}]

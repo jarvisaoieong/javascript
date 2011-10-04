@@ -23,10 +23,13 @@ nav ul{float:right;margin-right:10px;}
 nav ul li{float:left;list-style:none;}
 nav ul li a{padding:12px 10px;font-size:18px;color:#714644;}
 nav ul li a:hover{background-color:#087a91;color:#fff}
-#content{width:960px;height:790px;margin:0 auto;position:relative;}
-#content #parliament{position:absolute;top:375px;left:0}
-#content #projector{position:absolute;top:35px;right:10px;height:335px;width:435px;}
-#content #projector #projector-content{display:none;width:372px;height:270px;left:28px;top:-8px;position:relative;border:solid 3px #000}
+#content{width:960px;height:750px;margin:0 auto;position:relative;}
+#content #parliament{position:absolute;top:335px;left:0}
+#content #projector{position:absolute;top:15px;right:10px;height:335px;width:435px;}
+#content #projector #projector-content{display:none;width:372px;height:270px;left:28px;top:-8px;position:relative;border:solid 3px #000;background-color:#fff;overflow:hidden;}
+#content #projector #projector-content #projector-text{margin:15px 20px;color:#555;font-size:16px;}
+#content #projector #projector-content #projector-text span{color:#07798f;font-weight:bold;font-size:16px}
+#content #projector #projector-content #projector-text img{width:130px;float:left;margin-right:5px}
 #content #projector #projector-bottom{position:relative;top:-8px}
 #content #video-list{position:relative;}
 #content #video-list .video{cursor:pointer;position:absolute;}

@@ -3,8 +3,9 @@
 class exports.VideoListView extends Backbone.View
   id: 'video-list'
   initialize: ->
-    @collection.bind 'reset', @render
     @projector = @options.projector
+    @collection.bind 'reset', @render
+    @projector.bind 'inited', @showIntro
   render: =>
     $el = @$(@el)
     projector = @projector
@@ -14,3 +15,6 @@ class exports.VideoListView extends Backbone.View
         projector: projector
       $el.append videoView.render().el
     @
+  showIntro: =>
+    model = @collection.at 0
+    @projector.trigger 'updateText', model

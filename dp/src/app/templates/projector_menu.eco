@@ -1,5 +1,0 @@
-<ul>
-<% for menu in @submenu: %>
-    <li><%= menu.name %></li>
-<% end %>
-</ul>

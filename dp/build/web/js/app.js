@@ -11090,8 +11090,8 @@ window.jQuery = window.$ = jQuery;
   app.collections = {};
   app.views = {};
   app.config = {};
-  app.config.imgPath = 'http://vm:88/javascript/dp/img';
-  app.config.jsonPath = 'http://vm:88/javascript/dp/json';
+  app.config.imgPath = imgPath;
+  app.config.jsonPath = jsonPath;
   MainRouter = require('routers/main_router').MainRouter;
   HomeView = require('views/home_view').HomeView;
   Projector = require('models/projector').Projector;
@@ -11106,21 +11106,20 @@ window.jQuery = window.$ = jQuery;
       app.models.projector = new Projector();
       app.collections.menuList = new MenuList();
       app.collections.videoList = new VideoList();
-      app.views.home = new HomeView();
-      app.views.menuListView = new MenuListView({
-        collection: app.collections.menuList
-      });
+      /*
+          app.views.home = new HomeView()
+          app.views.menuListView = new MenuListView
+            collection: app.collections.menuList
+          */
       app.views.contentView = new ContentView({
         projector: app.models.projector,
         videoList: app.collections.videoList
       });
-      app.collections.menuList.fetch();
-      app.collections.videoList.fetch();
-      if (Backbone.history.getFragment() === '') {
-        return app.routers.main.navigate('home', true);
-      }
+      return app.collections.videoList.fetch();
     };
     app.initialize();
+    $('body').css('backgroundImage', "url(" + app.config.imgPath + "/bg.jpg)");
+    $('#content').html(app.views.contentView.render().el);
     return Backbone.history.start();
   });
 }).call(this);
@@ -11155,10 +11154,6 @@ window.jQuery = window.$ = jQuery;
     function Projector() {
       Projector.__super__.constructor.apply(this, arguments);
     }
-    Projector.prototype.defaults = {
-      videoUrl: null,
-      menu: null
-    };
     return Projector;
   })();
 }).call(this);
@@ -11396,6 +11391,52 @@ window.jQuery = window.$ = jQuery;
   }).call(__obj);
   __obj.safe = __objSafe, __obj.escape = __escape;
   return __out.join('');
+}}, "templates/project_text": function(exports, require, module) {module.exports = function(__obj) {
+  if (!__obj) __obj = {};
+  var __out = [], __capture = function(callback) {
+    var out = __out, result;
+    __out = [];
+    callback.call(this);
+    result = __out.join('');
+    __out = out;
+    return __safe(result);
+  }, __sanitize = function(value) {
+    if (value && value.ecoSafe) {
+      return value;
+    } else if (typeof value !== 'undefined' && value != null) {
+      return __escape(value);
+    } else {
+      return '';
+    }
+  }, __safe, __objSafe = __obj.safe, __escape = __obj.escape;
+  __safe = __obj.safe = function(value) {
+    if (value && value.ecoSafe) {
+      return value;
+    } else {
+      if (!(typeof value !== 'undefined' && value != null)) value = '';
+      var result = new String(value);
+      result.ecoSafe = true;
+      return result;
+    }
+  };
+  if (!__escape) {
+    __escape = __obj.escape = function(value) {
+      return ('' + value)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    };
+  }
+  (function() {
+    (function() {
+      __out.push(this.text);
+      __out.push('\n');
+    }).call(this);
+    
+  }).call(__obj);
+  __obj.safe = __objSafe, __obj.escape = __escape;
+  return __out.join('');
 }}, "templates/projector": function(exports, require, module) {module.exports = function(__obj) {
   if (!__obj) __obj = {};
   var __out = [], __capture = function(callback) {
@@ -11440,60 +11481,6 @@ window.jQuery = window.$ = jQuery;
       __out.push('/projector_top.png" />\n<div id="projector-content">\n</div>\n<img id=\'projector-bottom\' src="');
       __out.push(__sanitize(app.config.imgPath));
       __out.push('/projector_bottom.png" />\n');
-    }).call(this);
-    
-  }).call(__obj);
-  __obj.safe = __objSafe, __obj.escape = __escape;
-  return __out.join('');
-}}, "templates/projector_menu": function(exports, require, module) {module.exports = function(__obj) {
-  if (!__obj) __obj = {};
-  var __out = [], __capture = function(callback) {
-    var out = __out, result;
-    __out = [];
-    callback.call(this);
-    result = __out.join('');
-    __out = out;
-    return __safe(result);
-  }, __sanitize = function(value) {
-    if (value && value.ecoSafe) {
-      return value;
-    } else if (typeof value !== 'undefined' && value != null) {
-      return __escape(value);
-    } else {
-      return '';
-    }
-  }, __safe, __objSafe = __obj.safe, __escape = __obj.escape;
-  __safe = __obj.safe = function(value) {
-    if (value && value.ecoSafe) {
-      return value;
-    } else {
-      if (!(typeof value !== 'undefined' && value != null)) value = '';
-      var result = new String(value);
-      result.ecoSafe = true;
-      return result;
-    }
-  };
-  if (!__escape) {
-    __escape = __obj.escape = function(value) {
-      return ('' + value)
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;');
-    };
-  }
-  (function() {
-    (function() {
-      var menu, _i, _len, _ref;
-      __out.push('<ul>\n');
-      _ref = this.submenu;
-      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-        menu = _ref[_i];
-        __out.push('\n    <li>');
-        __out.push(__sanitize(menu.name));
-        __out.push('</li>\n');
-      }
-      __out.push('\n</ul>\n');
     }).call(this);
     
   }).call(__obj);
@@ -11673,8 +11660,42 @@ window.jQuery = window.$ = jQuery;
     return MenuView;
   })();
 }).call(this);
+}, "views/projector_text_view": function(exports, require, module) {(function() {
+  var projectorTextTemplate;
+  var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; }, __hasProp = Object.prototype.hasOwnProperty, __extends = function(child, parent) {
+    for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; }
+    function ctor() { this.constructor = child; }
+    ctor.prototype = parent.prototype;
+    child.prototype = new ctor;
+    child.__super__ = parent.prototype;
+    return child;
+  };
+  projectorTextTemplate = require('templates/project_text');
+  exports.ProjectorTextView = (function() {
+    __extends(ProjectorTextView, Backbone.View);
+    function ProjectorTextView() {
+      this.scroll = __bind(this.scroll, this);
+      this.render = __bind(this.render, this);
+      ProjectorTextView.__super__.constructor.apply(this, arguments);
+    }
+    ProjectorTextView.prototype.id = 'projector-text';
+    ProjectorTextView.prototype.render = function() {
+      this.$(this.el).html(projectorTextTemplate(this.model.toJSON()));
+      return this;
+    };
+    ProjectorTextView.prototype.scroll = function() {
+      /*
+          height = @el.scrollHeight - 270
+          @$(@el).animate
+            marginTop: "-#{height}px"
+          , height / 20 * 1000
+          */
+    };
+    return ProjectorTextView;
+  })();
+}).call(this);
 }, "views/projector_view": function(exports, require, module) {(function() {
-  var Projector, projectorTemplate;
+  var Projector, ProjectorTextView, projectorTemplate;
   var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; }, __hasProp = Object.prototype.hasOwnProperty, __extends = function(child, parent) {
     for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; }
     function ctor() { this.constructor = child; }
@@ -11685,25 +11706,31 @@ window.jQuery = window.$ = jQuery;
   };
   projectorTemplate = require('templates/projector');
   Projector = require('models/projector').Projector;
+  ProjectorTextView = require('views/projector_text_view').ProjectorTextView;
   exports.ProjectorView = (function() {
     __extends(ProjectorView, Backbone.View);
     function ProjectorView() {
+      this.showText = __bind(this.showText, this);
       this.showVideo = __bind(this.showVideo, this);
       this.render = __bind(this.render, this);
       ProjectorView.__super__.constructor.apply(this, arguments);
     }
     ProjectorView.prototype.id = 'projector';
     ProjectorView.prototype.initialize = function() {
-      return this.model.bind('change', this.showVideo);
+      this.model.bind('updateVideo', this.showVideo);
+      return this.model.bind('updateText', this.showText);
     };
     ProjectorView.prototype.render = function() {
-      var $el, $projector_content;
-      $el = this.$(this.el);
-      $el.html(projectorTemplate());
+      var $projector_content, model;
+      this.$(this.el).html(projectorTemplate());
+      model = this.model;
       $projector_content = this.$('#projector-content');
       _.delay(function() {
-        return $projector_content.slideDown(1000);
+        return $projector_content.slideDown(3000);
       }, 500);
+      _.delay(function() {
+        return model.trigger('inited', this.model);
+      }, 3500);
       return this;
     };
     ProjectorView.prototype.showVideo = function(model) {
@@ -11712,9 +11739,18 @@ window.jQuery = window.$ = jQuery;
       $iframe.attr('src', model.get('videoUrl'));
       $iframe.attr('width', '100%');
       $iframe.attr('height', '100%');
-      $iframe.hide();
-      this.$('#projector-content').html($iframe);
-      return $iframe.slideDown(1000);
+      return this.$('#projector-content').html($iframe);
+    };
+    ProjectorView.prototype.showText = function(model) {
+      var $projectorTextView, projectorTextView;
+      projectorTextView = new ProjectorTextView({
+        model: model
+      });
+      $projectorTextView = $(projectorTextView.render().el);
+      $projectorTextView.hide();
+      this.$('#projector-content').html($projectorTextView);
+      $projectorTextView.fadeIn(2000);
+      return projectorTextView.scroll();
     };
     return ProjectorView;
   })();
@@ -11733,13 +11769,15 @@ window.jQuery = window.$ = jQuery;
   exports.VideoListView = (function() {
     __extends(VideoListView, Backbone.View);
     function VideoListView() {
+      this.showIntro = __bind(this.showIntro, this);
       this.render = __bind(this.render, this);
       VideoListView.__super__.constructor.apply(this, arguments);
     }
     VideoListView.prototype.id = 'video-list';
     VideoListView.prototype.initialize = function() {
+      this.projector = this.options.projector;
       this.collection.bind('reset', this.render);
-      return this.projector = this.options.projector;
+      return this.projector.bind('inited', this.showIntro);
     };
     VideoListView.prototype.render = function() {
       var $el, projector;
@@ -11754,6 +11792,11 @@ window.jQuery = window.$ = jQuery;
         return $el.append(videoView.render().el);
       });
       return this;
+    };
+    VideoListView.prototype.showIntro = function() {
+      var model;
+      model = this.collection.at(0);
+      return this.projector.trigger('updateText', model);
     };
     return VideoListView;
   })();
@@ -11778,7 +11821,7 @@ window.jQuery = window.$ = jQuery;
     }
     VideoView.prototype.className = 'video';
     VideoView.prototype.events = {
-      'click': 'updateProjectorVideoUrl',
+      'click': 'updateProjector',
       'mouseover': 'animate'
     };
     VideoView.prototype.initialize = function() {
@@ -11788,10 +11831,12 @@ window.jQuery = window.$ = jQuery;
       this.$(this.el).html(videoTemplate(this.model.toJSON()));
       return this;
     };
-    VideoView.prototype.updateProjectorVideoUrl = function(event) {
-      return this.projector.set({
-        videoUrl: this.model.get('videoUrl')
-      });
+    VideoView.prototype.updateProjector = function(event) {
+      if (this.model.get('videoUrl')) {
+        return this.projector.trigger('updateVideo', this.model);
+      } else {
+        return this.projector.trigger('updateText', this.model);
+      }
     };
     VideoView.prototype.animate = function() {
       return this.$(this.el).animate({
