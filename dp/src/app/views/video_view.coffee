@@ -13,6 +13,8 @@ class exports.VideoView extends Backbone.View
   updateProjector: (event) ->
     if @model.get 'videoUrl'
       @projector.trigger 'updateVideo', @model
+    else if @model.get 'image'
+      @projector.trigger 'updateImage', @model
     else
       @projector.trigger 'updateText', @model
   animate: =>

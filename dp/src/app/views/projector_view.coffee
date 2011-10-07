@@ -1,12 +1,14 @@
 projectorTemplate = require 'templates/projector'
 {Projector} = require 'models/projector'
 {ProjectorTextView} = require 'views/projector_text_view'
+{ProjectorImageView} = require 'views/projector_image_view'
 
 class exports.ProjectorView extends Backbone.View
   id: 'projector'
   initialize: ->
     @model.bind 'updateVideo', @showVideo
     @model.bind 'updateText', @showText
+    @model.bind 'updateImage', @showImage
   render: =>
     @$(@el).html projectorTemplate()
     model = @model
@@ -31,5 +33,12 @@ class exports.ProjectorView extends Backbone.View
     $projectorTextView.hide()
     @$('#projector-content').html $projectorTextView
     $projectorTextView.fadeIn 2000
-    projectorTextView.scroll()
+  showImage: (model) =>
+    projectorImageView = new ProjectorImageView
+      model: model
+    @$('#projector-content').html projectorImageView.render().el
+    @$('#slider').nivoSlider
+      effect: 'slideInLeft'
+      pauseTime: 6000
+
 

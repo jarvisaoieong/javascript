@@ -12,7 +12,7 @@ a img{border:none}
 a{text-decoration:none;cursor:pointer}
 ul{list-style:none}
 body{color:#714644}
-header{width:100%;border-bottom:solid #087a91;margin-top:24px;padding-bottom:20px;overflow:hidden;}
+header{width:100%;border-bottom:solid #087a91;padding-bottom:20px;overflow:hidden;}
 header #header-main{width:960px;margin:0 auto;}
 header #header-main img{float:left}
 header #header-info{float:right;}
@@ -30,13 +30,15 @@ nav ul li a:hover{background-color:#087a91;color:#fff}
 #content #projector #projector-content #projector-text{margin:15px 20px;color:#555;font-size:16px;}
 #content #projector #projector-content #projector-text span{color:#07798f;font-weight:bold;font-size:16px}
 #content #projector #projector-content #projector-text img{width:130px;float:left;margin-right:5px}
+#content #projector #projector-content #projector-image{position:relative;}
+#content #projector #projector-content #projector-image img{position:absolute;top:0;left:0;display:none}
 #content #projector #projector-bottom{position:relative;top:-8px}
 #content #video-list{position:relative;}
-#content #video-list .video{cursor:pointer;position:absolute;}
-#content #video-list .video:nth-child(1){top:20px;left:130px}
-#content #video-list .video:nth-child(2){top:-120px;left:300px}
-#content #video-list .video:nth-child(3){top:70px;left:405px}
-#content #video-list .video:nth-child(4){top:50px;left:750px}
+#content #video-list .video{cursor:pointer;position:absolute}
+#content #video-list .video:first-child{top:20px;left:130px}
+#content #video-list .video+.video{top:-110px;left:370px}
+#content #video-list .video+.video+.video{top:70px;left:405px}
+#content #video-list .video+.video+.video+.video{top:50px;left:750px}
 footer{border-top:solid #cab3af;width:960px;margin:0 auto;}
 footer #footer-main{width:500px;margin:11px auto;text-align:center;font-size:14px;}
 footer #footer-main img{float:left;margin:0 5px}

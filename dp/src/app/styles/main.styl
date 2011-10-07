@@ -7,7 +7,6 @@ body
 header
   width 100%
   border-bottom solid border-color
-  margin-top 24px
   padding-bottom 20px
   overflow hidden
 
@@ -95,6 +94,15 @@ nav
           float left
           margin-right 5px
 
+      #projector-image
+        position relative
+
+        img
+          position absolute
+          top 0px
+          left 0px
+          display none
+
     #projector-bottom
       position relative
       top -8px
@@ -105,18 +113,18 @@ nav
     .video
       cursor pointer
       position absolute
-      &:nth-child(1)
-        top 20px
-        left 130px
-      &:nth-child(2)
-        top -120px
-        left 300px
-      &:nth-child(3)
-        top 70px
-        left 405px
-      &:nth-child(4)
-        top 50px
-        left 750px
+    .video:first-child
+      top 20px
+      left 130px
+    .video+.video
+      top -110px
+      left 370px
+    .video+.video+.video
+      top 70px
+      left 405px
+    .video+.video+.video+.video
+      top 50px
+      left 750px
 
 footer
   border-top solid footer-border-color
