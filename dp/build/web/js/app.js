@@ -12526,7 +12526,8 @@ window.jQuery = window.$ = jQuery;
       this.$('#projector-content').html(projectorImageView.render().el);
       return this.$('#slider').nivoSlider({
         effect: 'slideInLeft',
-        pauseTime: 6000
+        pauseTime: 6000,
+        controlNav: false
       });
     };
     return ProjectorView;

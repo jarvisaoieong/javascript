@@ -40,5 +40,6 @@ class exports.ProjectorView extends Backbone.View
     @$('#slider').nivoSlider
       effect: 'slideInLeft'
       pauseTime: 6000
+      controlNav: false
 
 
