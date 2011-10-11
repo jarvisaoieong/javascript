@@ -1,0 +1,35 @@
+html{margin:0;padding:0;border:0}
+body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,code,del,dfn,em,img,q,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,dialog,figure,footer,header,hgroup,nav,section{margin:0;padding:0;border:0;font-weight:inherit;font-style:inherit;font-size:100%;font-family:inherit;vertical-align:baseline}
+article,aside,dialog,figure,footer,header,hgroup,nav,section{display:block}
+body{background:#fff}
+table{border-collapse:separate;border-spacing:0}
+caption,th,td{text-align:left;font-weight:normal;float:none}
+table,th,td{vertical-align:middle}
+blockquote:before,blockquote:after,q:before,q:after{content:""}
+blockquote,q{quotes:"" ""}
+a img{border:none}
+:focus{outline:0}
+a{text-decoration:none;cursor:pointer}
+ul{list-style:none}
+body{color:#714644}
+#content{width:790px;height:580px;margin:0 auto;position:relative;}
+#content #map{width:785px;height:550px;position:relative;}
+#content #map >img{position:absolute}
+#content #map #argentina{top:370px;left:230px}
+#content #map #brazil{top:300px;left:250px}
+#content #map #bulgaria{top:190px;left:405px}
+#content #map #california{top:200px;left:130px}
+#content #map #china{top:200px;left:550px}
+#content #map #european_union{top:205px;left:345px}
+#content #map #greece{top:215px;left:395px}
+#content #map #hong_kong{top:230px;left:570px}
+#content #map #hungary{top:180px;left:380px}
+#content #map #italy{top:205px;left:372px}
+#content #map #japan{top:205px;left:600px}
+#content #map #macao{top:240px;left:560px}
+#content #map #northern_ireland{top:172px;left:333px}
+#content #map #poland{top:150px;left:375px}
+#content #map #united_kingdom{top:155px;left:345px}
+#content #map #elector{z-index:100;position:absolute;width:250px;background-color:#fff;border:1px solid #000;-webkit-box-shadow:5px 5px 10px #000;-moz-box-shadow:5px 5px 10px #000;box-shadow:5px 5px 10px #000;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;}
+#content #map #elector img{float:left}
+#content #map #elector .close{position:absolute;right:10px;cursor:pointer}

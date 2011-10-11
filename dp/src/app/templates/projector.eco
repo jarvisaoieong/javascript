@@ -1,4 +1,0 @@
-<img id='projector-top' src="<%= app.config.imgPath %>/projector_top.png" />
-<div id="projector-content">
-</div>
-<img id='projector-bottom' src="<%= app.config.imgPath %>/projector_bottom.png" />

@@ -1,0 +1,10 @@
+<div class="close">X</div>
+<img src="<%= "#{app.config.imgPath}/country/#{@id}.png" %>" />
+<div><%= @name %></div>
+<hr />
+<div>
+
+</div>
+<div>
+    <a href="<%= @detailUrl %>">More</a>
+</div>
