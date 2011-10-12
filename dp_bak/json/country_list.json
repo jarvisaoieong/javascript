@@ -1,0 +1,16 @@
+[
+    {"name":"阿根廷", "id":"argentina", "imgUrl":"/flag_dp.png", "imgUrlHover":"/flag_dp_hover.png"},
+    {"name":"巴西", "id":"brazil", "imgUrl":"/flag_dp.png", "imgUrlHover":"/flag_dp_hover.png"},
+    {"name":"保加利亞", "id":"bulgaria", "imgUrl":"/flag_dp_small.png", "imgUrlHover":"/flag_dp_hover_small.png"},
+    {"name":"美國加州", "id":"california", "imgUrl":"/flag_dp.png", "imgUrlHover":"/flag_dp_hover.png"},
+    {"name":"中國", "id":"china", "imgUrl":"/flag_dp.png", "imgUrlHover":"/flag_dp_hover.png"},
+    {"name":"歐盟", "id":"european_union", "imgUrl":"/flag_dp_small.png", "imgUrlHover":"/flag_dp_hover_small.png"},
+    {"name":"希臘", "id":"greece", "imgUrl":"/flag_dp_small.png", "imgUrlHover":"/flag_dp_hover_small.png"},
+    {"name":"香港", "id":"hong_kong", "imgUrl":"/flag_dp.png", "imgUrlHover":"/flag_dp_hover.png"},
+    {"name":"匈牙利", "id":"hungary", "imgUrl":"/flag_dp_small.png", "imgUrlHover":"/flag_dp_hover_small.png"},
+    {"name":"意大利", "id":"italy", "imgUrl":"/flag_dp_small.png", "imgUrlHover":"/flag_dp_hover_small.png"},
+    {"name":"日本", "id":"japan", "imgUrl":"/flag_dp.png", "imgUrlHover":"/flag_dp_hover.png"},
+    {"name":"澳門", "id":"macao", "imgUrl":"/flag_dpm.png", "imgUrlHover":"/flag_dpm_hover.png"},
+    {"name":"北愛爾蘭", "id":"northern_ireland", "imgUrl":"/flag_dp_small.png", "imgUrlHover":"/flag_dp_hover_small.png"},
+    {"name":"波蘭", "id":"poland", "imgUrl":"/flag_dp_small.png", "imgUrlHover":"/flag_dp_hover_small.png"},
+    {"name":"英國", "id":"united_kingdom", "imgUrl":"/flag_dp_small.png", "imgUrlHover":"/flag_dp_hover_small.png"}]

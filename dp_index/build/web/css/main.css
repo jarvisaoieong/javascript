@@ -1,0 +1,30 @@
+html{margin:0;padding:0;border:0}
+body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,code,del,dfn,em,img,q,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,dialog,figure,footer,header,hgroup,nav,section{margin:0;padding:0;border:0;font-weight:inherit;font-style:inherit;font-size:100%;font-family:inherit;vertical-align:baseline}
+article,aside,dialog,figure,footer,header,hgroup,nav,section{display:block}
+body{background:#fff}
+table{border-collapse:separate;border-spacing:0}
+caption,th,td{text-align:left;font-weight:normal;float:none}
+table,th,td{vertical-align:middle}
+blockquote:before,blockquote:after,q:before,q:after{content:""}
+blockquote,q{quotes:"" ""}
+a img{border:none}
+:focus{outline:0}
+a{text-decoration:none;cursor:pointer}
+ul{list-style:none}
+body{color:#714644}
+#content{width:960px;height:750px;margin:0 auto;position:relative;}
+#content #parliament{position:absolute;top:335px;left:0}
+#content #projector{position:absolute;top:15px;right:10px;height:335px;width:435px;}
+#content #projector #projector-content{display:none;width:372px;height:270px;left:28px;top:-8px;position:relative;border:solid 3px #000;background-color:#fff;overflow:hidden;}
+#content #projector #projector-content #projector-text{margin:15px 20px;color:#555;font-size:16px;}
+#content #projector #projector-content #projector-text span{color:#07798f;font-weight:bold;font-size:16px}
+#content #projector #projector-content #projector-text img{width:130px;float:left;margin-right:5px}
+#content #projector #projector-content #projector-image{position:relative;}
+#content #projector #projector-content #projector-image img{position:absolute;top:0;left:0;display:none}
+#content #projector #projector-bottom{position:relative;top:-8px}
+#content #video-list{position:relative;}
+#content #video-list .video{cursor:pointer;position:absolute}
+#content #video-list .video:first-child{top:20px;left:130px}
+#content #video-list .video+.video{top:-110px;left:370px}
+#content #video-list .video+.video+.video{top:70px;left:405px}
+#content #video-list .video+.video+.video+.video{top:50px;left:750px}
