@@ -12605,13 +12605,17 @@ window.jQuery = window.$ = jQuery;
       this.render = __bind(this.render, this);
       VideoView.__super__.constructor.apply(this, arguments);
     }
+    VideoView.prototype.tagName = 'img';
     VideoView.prototype.className = 'video';
     VideoView.prototype.events = {
       'click': 'updateProjector',
       'mouseover': 'animate'
     };
+    VideoView.prototype.initialize = function() {
+      this.$(this.el).attr('src', "" + app.config.imgPath + "/" + (this.model.get('imgUrl')));
+      return this.$(this.el).attr('id', this.model.get('id'));
+    };
     VideoView.prototype.render = function() {
-      this.$(this.el).html(videoTemplate(this.model.toJSON()));
       return this;
     };
     VideoView.prototype.updateProjector = function(event) {

@@ -1,10 +1,18 @@
-<div class="close">X</div>
-<img src="<%= "#{app.config.imgPath}/country/#{@id}.png" %>" />
-<div><%= @name %></div>
-<hr />
-<div>
-
+<img class='close' src="<%= "#{app.config.imgPath}/close.png" %>" />
+<div id="elector-title">
+    <img src="<%= "#{app.config.imgPath}/country/#{@id}.png" %>" />
+    <h3><%= @name %></h3>
 </div>
-<div>
+<table id="elector-info">
+    <tr>
+        <td class="column">議題:</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td class="column">簡介:</td>
+        <td><%- @content %></td>
+    </tr>
+</table>
+<div id="elector-more">
     <a href="<%= @detailUrl %>">More</a>
 </div>

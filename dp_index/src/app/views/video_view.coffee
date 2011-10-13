@@ -1,12 +1,15 @@
 videoTemplate = require 'templates/video'
 
 class exports.VideoView extends Backbone.View
+  tagName: 'img'
   className: 'video'
   events:
     'click': 'updateProjector'
     'mouseover': 'animate'
+  initialize: ->
+    @$(@el).attr 'src', "#{app.config.imgPath}/#{@model.get 'imgUrl'}"
+    @$(@el).attr 'id', @model.get 'id'
   render: =>
-    @$(@el).html videoTemplate @model.toJSON()
     @
   updateProjector: (event) ->
     app.models.projector.set

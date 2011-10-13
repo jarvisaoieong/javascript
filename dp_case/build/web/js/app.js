@@ -11187,11 +11187,15 @@ window.jQuery = window.$ = jQuery;
   }
   (function() {
     (function() {
-      __out.push('<div class="close">X</div>\n<img src="');
+      __out.push('<img class=\'close\' src="');
+      __out.push(__sanitize("" + app.config.imgPath + "/close.png"));
+      __out.push('" />\n<div id="elector-title">\n    <img src="');
       __out.push(__sanitize("" + app.config.imgPath + "/country/" + this.id + ".png"));
-      __out.push('" />\n<div>');
+      __out.push('" />\n    <h3>');
       __out.push(__sanitize(this.name));
-      __out.push('</div>\n<hr />\n<div>\n\n</div>\n<div>\n    <a href="');
+      __out.push('</h3>\n</div>\n<table id="elector-info">\n    <tr>\n        <td class="column">議題:</td>\n        <td></td>\n    </tr>\n    <tr>\n        <td class="column">簡介:</td>\n        <td>');
+      __out.push(this.content);
+      __out.push('</td>\n    </tr>\n</table>\n<div id="elector-more">\n    <a href="');
       __out.push(__sanitize(this.detailUrl));
       __out.push('">More</a>\n</div>\n');
     }).call(this);
@@ -11284,6 +11288,7 @@ window.jQuery = window.$ = jQuery;
       return this;
     };
     ElectorView.prototype.close = function() {
+      console.log('triggered close');
       return this.$(this.el).fadeOut();
     };
     return ElectorView;

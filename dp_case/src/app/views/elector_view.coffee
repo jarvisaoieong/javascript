@@ -32,4 +32,5 @@ class exports.ElectorView extends Backbone.View
       $el.fadeIn()
     @
   close: =>
+    console.log 'triggered close'
     @$(@el).fadeOut()

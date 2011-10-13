@@ -11,7 +11,7 @@ a img{border:none}
 :focus{outline:0}
 a{text-decoration:none;cursor:pointer}
 ul{list-style:none}
-body{color:#714644}
+body{color:#714644;line-height:1.5;font-family:"微軟正黑體","微软正黑体",Tahoma,Arial,Helvetica}
 #content{width:960px;height:750px;margin:0 auto;position:relative;}
 #content #parliament{position:absolute;top:335px;left:0}
 #content #projector{position:absolute;top:15px;right:10px;height:335px;width:435px;}
@@ -24,7 +24,7 @@ body{color:#714644}
 #content #projector #projector-bottom{position:relative;top:-8px}
 #content #video-list{position:relative;}
 #content #video-list .video{cursor:pointer;position:absolute}
-#content #video-list .video:first-child{top:20px;left:130px}
-#content #video-list .video+.video{top:-110px;left:370px}
-#content #video-list .video+.video+.video{top:70px;left:405px}
-#content #video-list .video+.video+.video+.video{top:50px;left:750px}
+#content #video-list #whatisdp{top:20px;left:130px}
+#content #video-list #dpprocess{top:-110px;left:370px}
+#content #video-list #dppromote{top:50px;left:750px}
+#footer{float:none;width:960px;margin:0 auto}

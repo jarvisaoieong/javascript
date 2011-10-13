@@ -4,14 +4,11 @@ article,aside,dialog,figure,footer,header,hgroup,nav,section{display:block}
 body{background:#fff}
 table{border-collapse:separate;border-spacing:0}
 caption,th,td{text-align:left;font-weight:normal;float:none}
-table,th,td{vertical-align:middle}
+table,th,td{vertical-align:top}
 blockquote:before,blockquote:after,q:before,q:after{content:""}
 blockquote,q{quotes:"" ""}
 a img{border:none}
 :focus{outline:0}
-a{text-decoration:none;cursor:pointer}
-ul{list-style:none}
-body{color:#714644}
 #content{width:790px;height:580px;margin:0 auto;position:relative;}
 #content #map{width:785px;height:550px;position:relative;}
 #content #map >img{position:absolute}
@@ -30,6 +27,11 @@ body{color:#714644}
 #content #map #northern_ireland{top:172px;left:333px}
 #content #map #poland{top:150px;left:375px}
 #content #map #united_kingdom{top:155px;left:345px}
-#content #map #elector{z-index:100;position:absolute;width:250px;background-color:#fff;border:1px solid #000;-webkit-box-shadow:5px 5px 10px #000;-moz-box-shadow:5px 5px 10px #000;box-shadow:5px 5px 10px #000;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;}
-#content #map #elector img{float:left}
+#content #map #elector{z-index:100;position:absolute;width:250px;background-color:#fff;border:1px solid #000;-webkit-box-shadow:5px 5px 10px #000;-moz-box-shadow:5px 5px 10px #000;box-shadow:5px 5px 10px #000;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;padding:10px;}
+#content #map #elector #elector-title{overflow:hidden;border-bottom:1px solid #ccc;font-size:18px;margin-bottom:5px;}
+#content #map #elector #elector-title img{float:left}
+#content #map #elector #elector-title h3{margin-top:12px;margin-left:60px}
+#content #map #elector #elector-info{color:#3b3b3c;font-size:14px;text-align:justify;padding-bottom:10px;border-bottom:1px solid #ccc;}
+#content #map #elector #elector-info .column{width:48px;color:#087a91}
+#content #map #elector #elector-more{text-align:center}
 #content #map #elector .close{position:absolute;right:10px;cursor:pointer}
