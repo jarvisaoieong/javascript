@@ -1,0 +1,4 @@
+Email:
+<input type="text" name="email" id="email" placeholder="Enter Email"/>
+<span id="subscribe-submit"><%= @submit %></span>
+<div id='subscribe-result'></div>
