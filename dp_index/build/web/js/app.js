@@ -12511,16 +12511,20 @@ window.jQuery = window.$ = jQuery;
       'click': 'subscribe'
     };
     PigeonView.prototype.initialize = function() {
-      return this.$(this.el).attr('src', "" + app.config.imgPath + "/pigeon.png");
+      this.$(this.el).attr('src', "" + app.config.imgPath + "/pigeon.png");
+      this.audio = new Audio();
+      return this.audio.src = app.config.jsonPath + "/goo.mp3";
     };
     PigeonView.prototype.render = function() {
       return this;
     };
     PigeonView.prototype.mouseover = function() {
-      return this.$(this.el).attr('src', "" + app.config.imgPath + "/pigeon_hover.png");
+      this.$(this.el).attr('src', "" + app.config.imgPath + "/pigeon_hover.png");
+      return this.audio.play();
     };
     PigeonView.prototype.mouseout = function() {
-      return this.$(this.el).attr('src', "" + app.config.imgPath + "/pigeon.png");
+      this.$(this.el).attr('src', "" + app.config.imgPath + "/pigeon.png");
+      return this.audio.stop();
     };
     PigeonView.prototype.subscribe = function() {
       return app.models.projector.set({

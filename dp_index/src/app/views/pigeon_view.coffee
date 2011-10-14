@@ -7,12 +7,16 @@ class exports.PigeonView extends Backbone.View
     'click': 'subscribe'
   initialize: ->
     @$(@el).attr 'src', "#{app.config.imgPath}/pigeon.png"
+    @audio = new Audio()
+    @audio.src = app.config.jsonPath + "/goo.mp3"
   render: =>
     @
   mouseover: =>
     @$(@el).attr 'src', "#{app.config.imgPath}/pigeon_hover.png"
+    @audio.play()
   mouseout: =>
     @$(@el).attr 'src', "#{app.config.imgPath}/pigeon.png"
+    @audio.stop()
   subscribe: =>
     app.models.projector.set
       'model': @model
