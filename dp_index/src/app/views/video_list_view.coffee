@@ -13,6 +13,7 @@ class exports.VideoListView extends Backbone.View
       $el.append videoView.render().el
     @
   showIntro: =>
-    model = @collection.at 0
+    index = if location.hash then location.hash.replace /#/g, '' else 0
+    model = @collection.at index
     app.models.projector.set
       model: model

@@ -32,6 +32,7 @@ a img{border:none}
 #content #map #elector #elector-title img{float:left}
 #content #map #elector #elector-title h3{margin-top:12px;margin-left:60px}
 #content #map #elector #elector-info{color:#3b3b3c;font-size:14px;text-align:justify;padding-bottom:10px;border-bottom:1px solid #ccc;}
+#content #map #elector #elector-info td{padding-bottom:8px;line-height:18px}
 #content #map #elector #elector-info .column{width:48px;color:#087a91}
 #content #map #elector #elector-more{text-align:center}
 #content #map #elector .close{position:absolute;right:10px;cursor:pointer}

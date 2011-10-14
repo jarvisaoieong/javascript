@@ -2,6 +2,7 @@ projectorTemplate = require 'templates/projector'
 {Projector} = require 'models/projector'
 {ProjectorTextView} = require 'views/projector_text_view'
 {ProjectorImageView} = require 'views/projector_image_view'
+{ProjectorSubscribeView} = require 'views/projector_subscribe_view'
 
 class exports.ProjectorView extends Backbone.View
   id: 'projector'
@@ -24,6 +25,7 @@ class exports.ProjectorView extends Backbone.View
       when "text" then @showText()
       when "image" then @showImage()
       when "video" then @showVideo()
+      when "subscribe" then @subscribe()
   showVideo: =>
     model = @model.get 'model'
     $iframe = $('<iframe/>')
@@ -46,7 +48,10 @@ class exports.ProjectorView extends Backbone.View
     @$('#projector-content').html projectorImageView.render().el
     @$('#slider').nivoSlider
       effect: 'slideInLeft'
-      pauseTime: 6000
-      controlNav: false
-
+      pauseTime: 4000
+      directionNav: false
+  subscribe: =>
+    projectorSubscribeView = new ProjectorSubscribeView
+      model: app.models.subscribe
+    @$('#projector-content').html projectorSubscribeView.render().el
 

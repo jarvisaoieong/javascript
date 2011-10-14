@@ -6,7 +6,7 @@
 <table id="elector-info">
     <tr>
         <td class="column">議題:</td>
-        <td></td>
+        <td><%- @title %></td>
     </tr>
     <tr>
         <td class="column">簡介:</td>
@@ -14,5 +14,5 @@
     </tr>
 </table>
 <div id="elector-more">
-    <a href="<%= @detailUrl %>">More</a>
+    <a target="_blank" href="<%= @moreUrl %>">More</a>
 </div>

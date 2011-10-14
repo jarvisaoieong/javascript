@@ -1,4 +1,4 @@
-projectorTextTemplate = require 'templates/project_text'
+projectorTextTemplate = require 'templates/projector_text'
 
 class exports.ProjectorTextView extends Backbone.View
   id: 'projector-text'

@@ -11768,7 +11768,7 @@ window.jQuery = window.$ = jQuery;
   })();
 }).call(this);
 }, "main": function(exports, require, module) {(function() {
-  var HomeView, IndexView, MainRouter, MenuList, Projector, VideoList;
+  var HomeView, IndexView, MainRouter, MenuList, Pigeon, Projector, Subscribe, VideoList;
   window.app = {};
   app.routers = {};
   app.models = {};
@@ -11780,6 +11780,8 @@ window.jQuery = window.$ = jQuery;
   MainRouter = require('routers/main_router').MainRouter;
   HomeView = require('views/home_view').HomeView;
   Projector = require('models/projector').Projector;
+  Pigeon = require('models/pigeon').Pigeon;
+  Subscribe = require('models/subscribe').Subscribe;
   MenuList = require('collections/menu_list').MenuList;
   VideoList = require('collections/video_list').VideoList;
   IndexView = require('views/index_view').IndexView;
@@ -11787,6 +11789,8 @@ window.jQuery = window.$ = jQuery;
     app.initialize = function() {
       app.routers.main = new MainRouter();
       app.models.projector = new Projector();
+      app.models.pigeon = new Pigeon();
+      app.models.subscribe = new Subscribe();
       app.collections.menuList = new MenuList();
       app.collections.videoList = new VideoList();
       /*
@@ -11796,13 +11800,11 @@ window.jQuery = window.$ = jQuery;
           */
       app.views.indexView = new IndexView();
       app.collections.videoList.fetch();
-      if (Backbone.history.getFragment() === '') {
-        return app.routers.main.navigate('home', true);
-      }
+      app.models.subscribe.fetch();
+      return $('#content').html(app.views.indexView.render().el);
     };
     app.initialize();
-    $('body').css('backgroundImage', "url(" + app.config.imgPath + "/bg.jpg)");
-    return Backbone.history.start();
+    return $('body').css('backgroundImage', "url(" + app.config.imgPath + "/bg.jpg)");
   });
 }).call(this);
 }, "models/menu": function(exports, require, module) {(function() {
@@ -11822,6 +11824,26 @@ window.jQuery = window.$ = jQuery;
     return Menu;
   })();
 }).call(this);
+}, "models/pigeon": function(exports, require, module) {(function() {
+  var __hasProp = Object.prototype.hasOwnProperty, __extends = function(child, parent) {
+    for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; }
+    function ctor() { this.constructor = child; }
+    ctor.prototype = parent.prototype;
+    child.prototype = new ctor;
+    child.__super__ = parent.prototype;
+    return child;
+  };
+  exports.Pigeon = (function() {
+    __extends(Pigeon, Backbone.Model);
+    function Pigeon() {
+      Pigeon.__super__.constructor.apply(this, arguments);
+    }
+    Pigeon.prototype.defaults = {
+      showType: 'subscribe'
+    };
+    return Pigeon;
+  })();
+}).call(this);
 }, "models/projector": function(exports, require, module) {(function() {
   var __hasProp = Object.prototype.hasOwnProperty, __extends = function(child, parent) {
     for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; }
@@ -11837,6 +11859,24 @@ window.jQuery = window.$ = jQuery;
       Projector.__super__.constructor.apply(this, arguments);
     }
     return Projector;
+  })();
+}).call(this);
+}, "models/subscribe": function(exports, require, module) {(function() {
+  var __hasProp = Object.prototype.hasOwnProperty, __extends = function(child, parent) {
+    for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; }
+    function ctor() { this.constructor = child; }
+    ctor.prototype = parent.prototype;
+    child.prototype = new ctor;
+    child.__super__ = parent.prototype;
+    return child;
+  };
+  exports.Subscribe = (function() {
+    __extends(Subscribe, Backbone.Model);
+    function Subscribe() {
+      Subscribe.__super__.constructor.apply(this, arguments);
+    }
+    Subscribe.prototype.url = app.config.jsonPath + "/subscribe.json";
+    return Subscribe;
   })();
 }).call(this);
 }, "models/video": function(exports, require, module) {(function() {
@@ -12071,52 +12111,6 @@ window.jQuery = window.$ = jQuery;
   }).call(__obj);
   __obj.safe = __objSafe, __obj.escape = __escape;
   return __out.join('');
-}}, "templates/project_text": function(exports, require, module) {module.exports = function(__obj) {
-  if (!__obj) __obj = {};
-  var __out = [], __capture = function(callback) {
-    var out = __out, result;
-    __out = [];
-    callback.call(this);
-    result = __out.join('');
-    __out = out;
-    return __safe(result);
-  }, __sanitize = function(value) {
-    if (value && value.ecoSafe) {
-      return value;
-    } else if (typeof value !== 'undefined' && value != null) {
-      return __escape(value);
-    } else {
-      return '';
-    }
-  }, __safe, __objSafe = __obj.safe, __escape = __obj.escape;
-  __safe = __obj.safe = function(value) {
-    if (value && value.ecoSafe) {
-      return value;
-    } else {
-      if (!(typeof value !== 'undefined' && value != null)) value = '';
-      var result = new String(value);
-      result.ecoSafe = true;
-      return result;
-    }
-  };
-  if (!__escape) {
-    __escape = __obj.escape = function(value) {
-      return ('' + value)
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;');
-    };
-  }
-  (function() {
-    (function() {
-      __out.push(this.text);
-      __out.push('\n');
-    }).call(this);
-    
-  }).call(__obj);
-  __obj.safe = __objSafe, __obj.escape = __escape;
-  return __out.join('');
 }}, "templates/projector": function(exports, require, module) {module.exports = function(__obj) {
   if (!__obj) __obj = {};
   var __out = [], __capture = function(callback) {
@@ -12220,6 +12214,99 @@ window.jQuery = window.$ = jQuery;
   }).call(__obj);
   __obj.safe = __objSafe, __obj.escape = __escape;
   return __out.join('');
+}}, "templates/projector_subscribe": function(exports, require, module) {module.exports = function(__obj) {
+  if (!__obj) __obj = {};
+  var __out = [], __capture = function(callback) {
+    var out = __out, result;
+    __out = [];
+    callback.call(this);
+    result = __out.join('');
+    __out = out;
+    return __safe(result);
+  }, __sanitize = function(value) {
+    if (value && value.ecoSafe) {
+      return value;
+    } else if (typeof value !== 'undefined' && value != null) {
+      return __escape(value);
+    } else {
+      return '';
+    }
+  }, __safe, __objSafe = __obj.safe, __escape = __obj.escape;
+  __safe = __obj.safe = function(value) {
+    if (value && value.ecoSafe) {
+      return value;
+    } else {
+      if (!(typeof value !== 'undefined' && value != null)) value = '';
+      var result = new String(value);
+      result.ecoSafe = true;
+      return result;
+    }
+  };
+  if (!__escape) {
+    __escape = __obj.escape = function(value) {
+      return ('' + value)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    };
+  }
+  (function() {
+    (function() {
+      __out.push('Email:\n<input type="text" name="email" id="email" placeholder="Enter Email"/>\n<span id="subscribe-submit">');
+      __out.push(__sanitize(this.submit));
+      __out.push('</span>\n<div id=\'subscribe-result\'></div>\n');
+    }).call(this);
+    
+  }).call(__obj);
+  __obj.safe = __objSafe, __obj.escape = __escape;
+  return __out.join('');
+}}, "templates/projector_text": function(exports, require, module) {module.exports = function(__obj) {
+  if (!__obj) __obj = {};
+  var __out = [], __capture = function(callback) {
+    var out = __out, result;
+    __out = [];
+    callback.call(this);
+    result = __out.join('');
+    __out = out;
+    return __safe(result);
+  }, __sanitize = function(value) {
+    if (value && value.ecoSafe) {
+      return value;
+    } else if (typeof value !== 'undefined' && value != null) {
+      return __escape(value);
+    } else {
+      return '';
+    }
+  }, __safe, __objSafe = __obj.safe, __escape = __obj.escape;
+  __safe = __obj.safe = function(value) {
+    if (value && value.ecoSafe) {
+      return value;
+    } else {
+      if (!(typeof value !== 'undefined' && value != null)) value = '';
+      var result = new String(value);
+      result.ecoSafe = true;
+      return result;
+    }
+  };
+  if (!__escape) {
+    __escape = __obj.escape = function(value) {
+      return ('' + value)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    };
+  }
+  (function() {
+    (function() {
+      __out.push(this.text);
+      __out.push('\n');
+    }).call(this);
+    
+  }).call(__obj);
+  __obj.safe = __objSafe, __obj.escape = __escape;
+  return __out.join('');
 }}, "templates/video": function(exports, require, module) {module.exports = function(__obj) {
   if (!__obj) __obj = {};
   var __out = [], __capture = function(callback) {
@@ -12293,7 +12380,7 @@ window.jQuery = window.$ = jQuery;
   })();
 }).call(this);
 }, "views/index_view": function(exports, require, module) {(function() {
-  var ProjectorView, VideoListView, indexTemplate;
+  var PigeonView, ProjectorView, VideoListView, indexTemplate;
   var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; }, __hasProp = Object.prototype.hasOwnProperty, __extends = function(child, parent) {
     for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; }
     function ctor() { this.constructor = child; }
@@ -12305,6 +12392,7 @@ window.jQuery = window.$ = jQuery;
   indexTemplate = require('templates/index');
   ProjectorView = require('views/projector_view').ProjectorView;
   VideoListView = require('views/video_list_view').VideoListView;
+  PigeonView = require('views/pigeon_view').PigeonView;
   exports.IndexView = (function() {
     __extends(IndexView, Backbone.View);
     function IndexView() {
@@ -12315,13 +12403,16 @@ window.jQuery = window.$ = jQuery;
       this.projectorView = new ProjectorView({
         model: app.models.projector
       });
-      return this.videoListView = new VideoListView({
-        collection: app.collections.videoList,
-        projector: this.options.projector
+      this.videoListView = new VideoListView({
+        collection: app.collections.videoList
+      });
+      return this.pigeonView = new PigeonView({
+        model: app.models.pigeon
       });
     };
     IndexView.prototype.render = function() {
       this.$(this.el).html(indexTemplate());
+      this.$(this.el).append(this.pigeonView.render().el);
       this.$(this.el).append(this.projectorView.render().el);
       this.$(this.el).append(this.videoListView.render().el);
       return this;
@@ -12394,6 +12485,51 @@ window.jQuery = window.$ = jQuery;
     return MenuView;
   })();
 }).call(this);
+}, "views/pigeon_view": function(exports, require, module) {(function() {
+  var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; }, __hasProp = Object.prototype.hasOwnProperty, __extends = function(child, parent) {
+    for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; }
+    function ctor() { this.constructor = child; }
+    ctor.prototype = parent.prototype;
+    child.prototype = new ctor;
+    child.__super__ = parent.prototype;
+    return child;
+  };
+  exports.PigeonView = (function() {
+    __extends(PigeonView, Backbone.View);
+    function PigeonView() {
+      this.subscribe = __bind(this.subscribe, this);
+      this.mouseout = __bind(this.mouseout, this);
+      this.mouseover = __bind(this.mouseover, this);
+      this.render = __bind(this.render, this);
+      PigeonView.__super__.constructor.apply(this, arguments);
+    }
+    PigeonView.prototype.tagName = 'img';
+    PigeonView.prototype.id = 'pigeon';
+    PigeonView.prototype.events = {
+      'mouseover': 'mouseover',
+      'mouseout': 'mouseout',
+      'click': 'subscribe'
+    };
+    PigeonView.prototype.initialize = function() {
+      return this.$(this.el).attr('src', "" + app.config.imgPath + "/pigeon.png");
+    };
+    PigeonView.prototype.render = function() {
+      return this;
+    };
+    PigeonView.prototype.mouseover = function() {
+      return this.$(this.el).attr('src', "" + app.config.imgPath + "/pigeon_hover.png");
+    };
+    PigeonView.prototype.mouseout = function() {
+      return this.$(this.el).attr('src', "" + app.config.imgPath + "/pigeon.png");
+    };
+    PigeonView.prototype.subscribe = function() {
+      return app.models.projector.set({
+        'model': this.model
+      });
+    };
+    return PigeonView;
+  })();
+}).call(this);
 }, "views/projector_image_view": function(exports, require, module) {(function() {
   var projectorImageTemplate;
   var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; }, __hasProp = Object.prototype.hasOwnProperty, __extends = function(child, parent) {
@@ -12419,6 +12555,54 @@ window.jQuery = window.$ = jQuery;
     return ProjectorImageView;
   })();
 }).call(this);
+}, "views/projector_subscribe_view": function(exports, require, module) {(function() {
+  var projectorSubscribeTemplate;
+  var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; }, __hasProp = Object.prototype.hasOwnProperty, __extends = function(child, parent) {
+    for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; }
+    function ctor() { this.constructor = child; }
+    ctor.prototype = parent.prototype;
+    child.prototype = new ctor;
+    child.__super__ = parent.prototype;
+    return child;
+  };
+  projectorSubscribeTemplate = require('templates/projector_subscribe');
+  exports.ProjectorSubscribeView = (function() {
+    __extends(ProjectorSubscribeView, Backbone.View);
+    function ProjectorSubscribeView() {
+      this.submit = __bind(this.submit, this);
+      this.render = __bind(this.render, this);
+      ProjectorSubscribeView.__super__.constructor.apply(this, arguments);
+    }
+    ProjectorSubscribeView.prototype.id = 'projector-subscribe';
+    ProjectorSubscribeView.prototype.events = {
+      'click #subscribe-submit': 'submit'
+    };
+    ProjectorSubscribeView.prototype.render = function() {
+      this.$(this.el).html(projectorSubscribeTemplate(this.model.toJSON()));
+      return this;
+    };
+    ProjectorSubscribeView.prototype.submit = function() {
+      var $result, email;
+      $result = this.$('#subscribe-result');
+      $result.hide();
+      $result.html(this.model.get('result'));
+      $result.fadeIn(1000);
+      email = this.$('#email').val();
+      return $.ajax({
+        type: 'get',
+        dataType: 'jsonp',
+        url: 'http://202.175.83.251/ers_api/index.php/transmitter/dp/email/format/jsonp',
+        data: {
+          email: email
+        },
+        success: function() {
+          return console.log('subscribe success');
+        }
+      });
+    };
+    return ProjectorSubscribeView;
+  })();
+}).call(this);
 }, "views/projector_text_view": function(exports, require, module) {(function() {
   var projectorTextTemplate;
   var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; }, __hasProp = Object.prototype.hasOwnProperty, __extends = function(child, parent) {
@@ -12429,7 +12613,7 @@ window.jQuery = window.$ = jQuery;
     child.__super__ = parent.prototype;
     return child;
   };
-  projectorTextTemplate = require('templates/project_text');
+  projectorTextTemplate = require('templates/projector_text');
   exports.ProjectorTextView = (function() {
     __extends(ProjectorTextView, Backbone.View);
     function ProjectorTextView() {
@@ -12454,7 +12638,7 @@ window.jQuery = window.$ = jQuery;
   })();
 }).call(this);
 }, "views/projector_view": function(exports, require, module) {(function() {
-  var Projector, ProjectorImageView, ProjectorTextView, projectorTemplate;
+  var Projector, ProjectorImageView, ProjectorSubscribeView, ProjectorTextView, projectorTemplate;
   var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; }, __hasProp = Object.prototype.hasOwnProperty, __extends = function(child, parent) {
     for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; }
     function ctor() { this.constructor = child; }
@@ -12467,9 +12651,11 @@ window.jQuery = window.$ = jQuery;
   Projector = require('models/projector').Projector;
   ProjectorTextView = require('views/projector_text_view').ProjectorTextView;
   ProjectorImageView = require('views/projector_image_view').ProjectorImageView;
+  ProjectorSubscribeView = require('views/projector_subscribe_view').ProjectorSubscribeView;
   exports.ProjectorView = (function() {
     __extends(ProjectorView, Backbone.View);
     function ProjectorView() {
+      this.subscribe = __bind(this.subscribe, this);
       this.showImage = __bind(this.showImage, this);
       this.showText = __bind(this.showText, this);
       this.showVideo = __bind(this.showVideo, this);
@@ -12504,6 +12690,8 @@ window.jQuery = window.$ = jQuery;
           return this.showImage();
         case "video":
           return this.showVideo();
+        case "subscribe":
+          return this.subscribe();
       }
     };
     ProjectorView.prototype.showVideo = function() {
@@ -12535,9 +12723,16 @@ window.jQuery = window.$ = jQuery;
       this.$('#projector-content').html(projectorImageView.render().el);
       return this.$('#slider').nivoSlider({
         effect: 'slideInLeft',
-        pauseTime: 6000,
-        controlNav: false
+        pauseTime: 4000,
+        directionNav: false
       });
+    };
+    ProjectorView.prototype.subscribe = function() {
+      var projectorSubscribeView;
+      projectorSubscribeView = new ProjectorSubscribeView({
+        model: app.models.subscribe
+      });
+      return this.$('#projector-content').html(projectorSubscribeView.render().el);
     };
     return ProjectorView;
   })();
@@ -12578,8 +12773,9 @@ window.jQuery = window.$ = jQuery;
       return this;
     };
     VideoListView.prototype.showIntro = function() {
-      var model;
-      model = this.collection.at(0);
+      var index, model;
+      index = location.hash ? location.hash.replace(/#/g, '') : 0;
+      model = this.collection.at(index);
       return app.models.projector.set({
         model: model
       });

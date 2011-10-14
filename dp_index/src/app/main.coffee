@@ -12,6 +12,8 @@ MainRouter = require('routers/main_router').MainRouter
 HomeView = require('views/home_view').HomeView
 
 {Projector} = require 'models/projector'
+{Pigeon} = require 'models/pigeon'
+{Subscribe} = require 'models/subscribe'
 
 {MenuList} = require 'collections/menu_list'
 {VideoList} = require 'collections/video_list'
@@ -24,6 +26,8 @@ $(document).ready ->
     app.routers.main = new MainRouter()
 
     app.models.projector = new Projector()
+    app.models.pigeon = new Pigeon()
+    app.models.subscribe = new Subscribe()
 
     app.collections.menuList = new MenuList()
     app.collections.videoList = new VideoList()
@@ -37,8 +41,10 @@ $(document).ready ->
     
     #app.collections.menuList.fetch()
     app.collections.videoList.fetch()
+    app.models.subscribe.fetch()
 
-    app.routers.main.navigate 'home', true if Backbone.history.getFragment() is ''
+    $('#content').html app.views.indexView.render().el
+    #app.routers.main.navigate 'home', true if Backbone.history.getFragment() is ''
   app.initialize()
   $('body').css 'backgroundImage', "url(#{app.config.imgPath}/bg.jpg)"
-  Backbone.history.start()
+  #Backbone.history.start()

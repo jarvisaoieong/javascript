@@ -13,14 +13,22 @@ a{text-decoration:none;cursor:pointer}
 ul{list-style:none}
 body{color:#714644;line-height:1.5;font-family:"微軟正黑體","微软正黑体",Tahoma,Arial,Helvetica}
 #content{width:960px;height:750px;margin:0 auto;position:relative;}
+#content #pigeon{position:absolute;left:20px;width:80px;top:32px}
 #content #parliament{position:absolute;top:335px;left:0}
 #content #projector{position:absolute;top:15px;right:10px;height:335px;width:435px;}
 #content #projector #projector-content{display:none;width:372px;height:270px;left:28px;top:-8px;position:relative;border:solid 3px #000;background-color:#fff;overflow:hidden;}
 #content #projector #projector-content #projector-text{margin:15px 20px;color:#555;font-size:16px;}
 #content #projector #projector-content #projector-text span{color:#07798f;font-weight:bold;font-size:16px}
-#content #projector #projector-content #projector-text img{width:130px;float:left;margin-right:5px}
-#content #projector #projector-content #projector-image{position:relative;}
+#content #projector #projector-content #projector-text img{width:120px;float:left;margin-right:5px}
+#content #projector #projector-content #projector-text p{font-size:15px}
+#content #projector #projector-content #projector-image{position:relative;height:100%;}
 #content #projector #projector-content #projector-image img{position:absolute;top:0;left:0;display:none}
+#content #projector #projector-content #projector-image .slider-wrapper{height:100%}
+#content #projector #projector-content #projector-image .nivoSlider{height:100%}
+#content #projector #projector-content #projector-image .nivo-controlNav{bottom:0;left:0;margin-left:0;}
+#content #projector #projector-content #projector-image .nivo-controlNav a{width:18px;height:18px}
+#content #projector #projector-content #projector-subscribe{padding-top:100px;text-align:center;color:#3b3b3c;font-size:16px;}
+#content #projector #projector-content #projector-subscribe #subscribe-submit{padding:2px 5px;background-color:#087a91;cursor:pointer;color:#fff}
 #content #projector #projector-bottom{position:relative;top:-8px}
 #content #video-list{position:relative;}
 #content #video-list .video{cursor:pointer;position:absolute}

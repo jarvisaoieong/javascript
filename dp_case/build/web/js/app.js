@@ -11082,13 +11082,10 @@ window.jQuery = window.$ = jQuery;
       app.collections.countryList = new CountryList();
       app.views.caseView = new CaseView();
       app.collections.countryList.fetch();
-      if (Backbone.history.getFragment() === '') {
-        return app.routers.main.navigate('case', true);
-      }
+      return $('#content').html(app.views.caseView.render().el);
     };
     app.initialize();
-    $('body').css('backgroundImage', "url(" + app.config.imgPath + "/bg.jpg)");
-    return Backbone.history.start();
+    return $('body').css('backgroundImage', "url(" + app.config.imgPath + "/bg.jpg)");
   });
 }).call(this);
 }, "models/country": function(exports, require, module) {(function() {
@@ -11193,10 +11190,12 @@ window.jQuery = window.$ = jQuery;
       __out.push(__sanitize("" + app.config.imgPath + "/country/" + this.id + ".png"));
       __out.push('" />\n    <h3>');
       __out.push(__sanitize(this.name));
-      __out.push('</h3>\n</div>\n<table id="elector-info">\n    <tr>\n        <td class="column">議題:</td>\n        <td></td>\n    </tr>\n    <tr>\n        <td class="column">簡介:</td>\n        <td>');
+      __out.push('</h3>\n</div>\n<table id="elector-info">\n    <tr>\n        <td class="column">議題:</td>\n        <td>');
+      __out.push(this.title);
+      __out.push('</td>\n    </tr>\n    <tr>\n        <td class="column">簡介:</td>\n        <td>');
       __out.push(this.content);
-      __out.push('</td>\n    </tr>\n</table>\n<div id="elector-more">\n    <a href="');
-      __out.push(__sanitize(this.detailUrl));
+      __out.push('</td>\n    </tr>\n</table>\n<div id="elector-more">\n    <a target="_blank" href="');
+      __out.push(__sanitize(this.moreUrl));
       __out.push('">More</a>\n</div>\n');
     }).call(this);
     
@@ -11288,7 +11287,6 @@ window.jQuery = window.$ = jQuery;
       return this;
     };
     ElectorView.prototype.close = function() {
-      console.log('triggered close');
       return this.$(this.el).fadeOut();
     };
     return ElectorView;
@@ -11365,14 +11363,13 @@ window.jQuery = window.$ = jQuery;
     MapView.prototype.id = 'map';
     MapView.prototype.initialize = function() {
       this.$(this.el).css('backgroundImage', "url(" + app.config.imgPath + "/map.png)");
-      return this.collection.bind('reset', this.addCountryList);
-    };
-    MapView.prototype.render = function() {
-      var electorView;
-      electorView = new ElectorView({
+      this.collection.bind('reset', this.addCountryList);
+      return this.electorView = new ElectorView({
         model: app.models.elector
       });
-      this.$(this.el).append(electorView.render().el);
+    };
+    MapView.prototype.render = function() {
+      this.$(this.el).append(this.electorView.render().el);
       return this;
     };
     MapView.prototype.addCountryList = function() {

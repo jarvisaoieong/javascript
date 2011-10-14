@@ -29,7 +29,8 @@ $(document).ready ->
     
     app.collections.countryList.fetch()
 
-    app.routers.main.navigate 'case', true if Backbone.history.getFragment() is ''
+    $('#content').html app.views.caseView.render().el
+    #app.routers.main.navigate 'case', true if Backbone.history.getFragment() is ''
   app.initialize()
   $('body').css 'backgroundImage', "url(#{app.config.imgPath}/bg.jpg)"
-  Backbone.history.start()
+  #Backbone.history.start()

@@ -11,12 +11,15 @@ body
   height 750px
   margin 0px auto
   position relative
-
+  #pigeon
+    position absolute
+    left 20px
+    width 80px
+    top 32px
   #parliament
     position absolute
     top 335px
     left 0px
-
   #projector
     position absolute
     top 15px
@@ -39,25 +42,47 @@ body
         margin 15px 20px
         color #555555
         font-size 16px
-
         span
           color #07798F
           font-weight bold
           font-size 16px
-
         img
-          width 130px
+          width 120px
           float left
           margin-right 5px
+        p
+          font-size 15px
 
       #projector-image
         position relative
-
+        height 100%
         img
           position absolute
           top 0px
           left 0px
           display none
+        .slider-wrapper
+          height 100%
+        .nivoSlider
+          height 100%
+        .nivo-controlNav
+          bottom 0px
+          left 0px
+          margin-left 0px
+          a
+            width 18px
+            height 18px
+
+      #projector-subscribe
+        padding-top 100px
+        text-align center
+        color #3b3b3c
+        font-size 16px
+        #subscribe-submit
+          padding 2px 5px
+          background-color #087A91
+          cursor pointer
+          color white
 
     #projector-bottom
       position relative

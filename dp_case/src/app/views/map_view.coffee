@@ -6,10 +6,10 @@ class exports.MapView extends Backbone.View
   initialize: ->
     @$(@el).css 'backgroundImage', "url(#{app.config.imgPath}/map.png)"
     @collection.bind 'reset', @addCountryList
-  render: =>
-    electorView = new ElectorView
+    @electorView = new ElectorView
       model: app.models.elector
-    @$(@el).append electorView.render().el
+  render: =>
+    @$(@el).append @electorView.render().el
     @
   addCountryList: =>
     $el = @$(@el)
