@@ -1,2 +1,0 @@
-<img src="<%= app.config.imgPath %>/athen.png" id="athen" />
-<img src="<%= app.config.imgPath %>/parliament.png" id="parliament" />

@@ -1,8 +1,0 @@
-<div class="slider-wrapper theme-default">
-    <div class="ribbon"></div>
-    <div id="slider" class="nivoSlider">
-    <% for image in @image: %>
-    <img src="<%= app.config.imgPath + image %>" />
-    <% end %>
-    </div>
-</div>

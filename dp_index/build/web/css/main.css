@@ -13,7 +13,7 @@ a{text-decoration:none;cursor:pointer}
 ul{list-style:none}
 body{color:#714644;line-height:1.5;font-family:"微軟正黑體","微软正黑体",Tahoma,Arial,Helvetica}
 #content{width:960px;height:750px;margin:0 auto;position:relative;}
-#content #pigeon{position:absolute;left:20px;width:80px;top:32px}
+#content #pigeon{position:absolute;cursor:pointer;left:20px;width:80px;top:32px}
 #content #parliament{position:absolute;top:335px;left:0}
 #content #projector{position:absolute;top:15px;right:10px;height:335px;width:435px;}
 #content #projector #projector-content{display:none;width:372px;height:270px;left:28px;top:-8px;position:relative;border:solid 3px #000;background-color:#fff;overflow:hidden;}

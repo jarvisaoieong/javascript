@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js" type="text/javascript"></script>
+        <script src="http://jashkenas.github.com/coffee-script/extras/coffee-script.js" type="text/javascript"></script>
+    </head>
+    <body>
+        <input type="input" id="input" value="" name="" />
+        <ul id="console"></ul>
+        <script type="text/coffeescript">
+$(document).ready ->
+    ws = new WebSocket('ws://localhost:8000')
+    ws.onmessage = (event) ->
+        $('#console').append "<li>#{event.data}</li>"
+    $('#input').keypress (event) ->
+        return unless event.keyCode == 13
+        msg = $(@).val()
+        if msg
+            console.log msg
+            ws.send msg
+            $(@).val('')
+
+        </script>
+    </body>
+</html>

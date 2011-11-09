@@ -12253,7 +12253,9 @@ window.jQuery = window.$ = jQuery;
   }
   (function() {
     (function() {
-      __out.push('Email:\n<input type="text" name="email" id="email" placeholder="Enter Email"/>\n<span id="subscribe-submit">');
+      __out.push('<div>');
+      __out.push(__sanitize(this.info));
+      __out.push('</div>\nEmail:\n<input type="text" name="email" id="email" placeholder="Enter Email"/>\n<span id="subscribe-submit">');
       __out.push(__sanitize(this.submit));
       __out.push('</span>\n<div id=\'subscribe-result\'></div>\n');
     }).call(this);
@@ -12511,20 +12513,16 @@ window.jQuery = window.$ = jQuery;
       'click': 'subscribe'
     };
     PigeonView.prototype.initialize = function() {
-      this.$(this.el).attr('src', "" + app.config.imgPath + "/pigeon.png");
-      this.audio = new Audio();
-      return this.audio.src = app.config.jsonPath + "/goo.mp3";
+      return this.$(this.el).attr('src', "" + app.config.imgPath + "/pigeon.png");
     };
     PigeonView.prototype.render = function() {
       return this;
     };
     PigeonView.prototype.mouseover = function() {
-      this.$(this.el).attr('src', "" + app.config.imgPath + "/pigeon_hover.png");
-      return this.audio.play();
+      return this.$(this.el).attr('src', "" + app.config.imgPath + "/pigeon_hover.png");
     };
     PigeonView.prototype.mouseout = function() {
-      this.$(this.el).attr('src', "" + app.config.imgPath + "/pigeon.png");
-      return this.audio.stop();
+      return this.$(this.el).attr('src', "" + app.config.imgPath + "/pigeon.png");
     };
     PigeonView.prototype.subscribe = function() {
       return app.models.projector.set({
